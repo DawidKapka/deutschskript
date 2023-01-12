@@ -5,7 +5,7 @@ import {Token} from "./types/types";
 import {parse} from "./parser/parser";
 import {emit} from "./emitter/emitter";
 
-const tokens: Token[] = tokenize(fs.readFileSync(path.join(__dirname, './example.ds')).toString())
+const tokens: Token[][] = tokenize(fs.readFileSync(path.join(__dirname, './example.ds')).toString())
 
 const program = parse(tokens);
 

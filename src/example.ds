@@ -1,1 +1,2 @@
-schreibe(1 + 2 + 3)
+konsole.schreibe(1 + 2 - 3)
+das.test()

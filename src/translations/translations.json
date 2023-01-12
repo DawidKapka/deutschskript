@@ -1,6 +1,22 @@
 [
   {
-    "js": "console.log",
+    "js": "this",
+    "ds": ["das"]
+  },
+  {
+    "js": "log",
     "ds": ["schreibe"]
+  },
+  {
+    "js": "console",
+    "ds": ["konsole"]
+  },
+  {
+    "js": "error",
+    "ds": ["fehler"]
+  },
+  {
+    "js": "warn",
+    "ds": ["warne"]
   }
 ]

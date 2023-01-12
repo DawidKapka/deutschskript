@@ -5,6 +5,7 @@ export type NumericLiteralToken = { type: 'NumericLiteral', value: string }
 export type PlusToken = { type: 'PlusToken' }
 export type MinusToken = { type: 'MinusToken' }
 export type AttributeCallToken = { type: 'AttributeCallToken' }
+export type ChainToken = { type: 'ChainToken' }
 
 export type Token =
     | IdentifierToken
@@ -13,7 +14,8 @@ export type Token =
     | NumericLiteralToken
     | PlusToken
     | MinusToken
-    | AttributeCallToken;
+    | AttributeCallToken
+    | ChainToken;
 
 
 export type TokenFunction = (tokens: Token[], input: string, cursorPos: number) => number;
@@ -22,13 +24,17 @@ export type TokenHandler = { token: RegExp, callback: TokenFunction };
 export type OperatorToken = PlusToken | MinusToken;
 
 export type NumericLiteralNode = { type: 'NumericLiteral', value: string }
-export type CallExpressionNode = { type: 'CallExpression', identifier: IdentifierToken, arguments: Node }
+export type CallExpressionNode = { type: 'CallExpression', identifier: IdentifierToken, arguments?: Node }
 export type BinaryExpressionNode = { type: 'BinaryExpression', operator: OperatorToken, left: Node, right: Node }
+export type ChainNode = { type: 'Chain', nodes: Node[] }
+export type IdentifierNode = { type: 'Identifier', value: string }
 
 export type Node =
     | NumericLiteralNode
     | CallExpressionNode
-    | BinaryExpressionNode;
+    | BinaryExpressionNode
+    | ChainNode
+    | IdentifierNode;
 
 export type Program = { body: Node[] };
 

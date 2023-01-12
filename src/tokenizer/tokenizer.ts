@@ -1,15 +1,25 @@
 import {Token, TokenHandler} from "../types/types";
 
-export const tokenize = (input: string): Token[] => {
+export const tokenize = (input: string): Token[][] => {
+    const tokenLines: Token[][] = [];
+    const lines = input.split('\n');
+    lines.forEach((line) => {
+        const tokenizedLine = tokenizeLine(line)
+        tokenLines.push(tokenizedLine);
+    }, []);
+    return tokenLines;
+}
+
+const tokenizeLine = (line: string): Token[] => {
     const tokens: Token[] = [];
 
     let cursorPos: number = 0
-    while (cursorPos < input.length) {
-        let token = input[cursorPos];
+    while (cursorPos < line.length) {
+        let token = line[cursorPos];
 
         const tokenHandler = tokenHandlers.filter((handler) => handler.token.test(token))[0];
         if (tokenHandler) {
-            cursorPos += tokenHandler.callback(tokens, input, cursorPos);
+            cursorPos += tokenHandler.callback(tokens, line, cursorPos);
         } else {
             throw new Error(`Unexpected token: ${token}`);
         }
@@ -29,6 +39,10 @@ const tokenHandlers: TokenHandler[] = [
         return 1;
         }
     },
+    { token: /[.]/, callback: (tokens, input, cursorPos) => {
+        tokens.push({ type: 'ChainToken' });
+        return 1;
+        }},
     { token: /[a-zA-Z]/, callback: (tokens, input, cursorPos) => {
             let cursorIncrease = 0;
             let word = '';

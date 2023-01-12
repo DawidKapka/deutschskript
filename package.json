@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npx nodemon src/main.ts --ignore src/example.js,src/example.json"
+    "start": "npx nodemon src/main.ts --ignore src/example.json,src/example.js"
   },
   "keywords": [],
   "author": "",
