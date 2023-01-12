@@ -9,5 +9,4 @@ const tokens: Token[] = tokenize(fs.readFileSync(path.join(__dirname, './example
 
 const program = parse(tokens);
 
-fs.writeFileSync(path.join(__dirname, './example.json'), program.body.map((node) => JSON.stringify(node, null, 2)).join(''));
 fs.writeFileSync(path.join(__dirname, './example.js'), emit(program))
